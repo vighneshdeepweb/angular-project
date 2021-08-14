@@ -1,0 +1,220 @@
+<div class="block-header">
+    <!-- <h2>
+          FORM VALIDATION
+          <small>Taken from <a href="https://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></small>
+        </h2> -->
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Edit User</h2>
+
+            </div>
+            <div class="body">
+                <form name="userForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" autocomplete="off" name="FirstName"
+                                    maxlength="45" [(ngModel)]="model.FirstName" #FirstName="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && FirstName.invalid }" required />
+                                <div *ngIf="f.submitted && FirstName.invalid" class="invalid-feedback">
+                                    <label *ngIf="FirstName.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" autocomplete="off" name="LastName"
+                                    maxlength="45" [(ngModel)]="model.LastName" #LastName="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && LastName.invalid }" required />
+                                <div *ngIf="f.submitted && LastName.invalid" class="invalid-feedback">
+                                    <label *ngIf="LastName.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control" disabled="" autocomplete="off" name="Email" maxlength="45"
+                                    [(ngModel)]="model.Email" #Email="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && Email.invalid }" required />
+                                <div *ngIf="f.submitted && Email.invalid" class="invalid-feedback">
+                                    <label *ngIf="Email.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="text" class="form-control" autocomplete="off" name="Password"
+                                    maxlength="45" [(ngModel)]="model.Password" #Password="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && Password.invalid }" required />
+                                <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
+                                    <label *ngIf="Password.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Mobile No</label>
+                                <input type="text" class="form-control" autocomplete="off" name="MobileNo"
+                                    maxlength="45" [(ngModel)]="model.MobileNo" #MobileNo="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && MobileNo.invalid }" required />
+                                <div *ngIf="f.submitted && MobileNo.invalid" class="invalid-feedback">
+                                    <label *ngIf="MobileNo.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Country Name</label>
+                                <select class="form-control" [(ngModel)]="model.CountryId" #CountryId="ngModel"
+                                    name="CountryId" (change)="bindState($event.target.value)"
+                                    [ngClass]="{ 'is-invalid': f.submitted && CountryId.invalid }" required>
+                                    <option value="">--Select Country--</option>
+                                    <option *ngFor="let cou of countries" value={{cou.CountryId}}>{{cou.CountryName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && CountryId.invalid" class="invalid-feedback">
+                                    <label *ngIf="CountryId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">State Name</label>
+                                <select class="form-control" [(ngModel)]="model.StateId" #StateId="ngModel" (change)="bindCity($event.target.value)"
+                                    name="StateId" [ngClass]="{ 'is-invalid': f.submitted && StateId.invalid }"
+                                    required>
+                                    <option value="">--Select State--</option>
+                                    <option *ngFor="let stat of states" value={{stat.StateId}}>{{stat.StateName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && StateId.invalid" class="invalid-feedback">
+                                    <label *ngIf="StateId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">City Name</label>
+                                <select class="form-control" [(ngModel)]="model.CityId" #CityId="ngModel" name="CityId"
+                                    [ngClass]="{ 'is-invalid': f.submitted && CityId.invalid }" required>
+                                    <option value="">--Select City--</option>
+                                    <option *ngFor="let cty of cities" value={{cty.CityId}}>{{cty.CityName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && CityId.invalid" class="invalid-feedback">
+                                    <label *ngIf="CityId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">University</label>
+                                <select class="form-control" [(ngModel)]="model.UniversityId" #UniversityId="ngModel" name="UniversityId"
+                                    [ngClass]="{ 'is-invalid': f.submitted && UniversityId.invalid }" required>
+                                    <option value="">--Select University--</option>
+                                    <option *ngFor="let unis of universities" value={{unis.UniversityId}}>{{unis.UniversityName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && UniversityId.invalid" class="invalid-feedback">
+                                    <label *ngIf="UniversityId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Home Town</label>
+                                <input type="text" class="form-control" autocomplete="off" name="HomeTown"
+                                    maxlength="45" [(ngModel)]="model.HomeTown" #HomeTown="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && HomeTown.invalid }" required />
+                                <div *ngIf="f.submitted && HomeTown.invalid" class="invalid-feedback">
+                                    <label *ngIf="HomeTown.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">% In 10th</label>
+                                <input type="text" class="form-control" autocomplete="off" name="PercentageIn10th"
+                                    maxlength="45" [(ngModel)]="model.PercentageIn10th" #PercentageIn10th="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && PercentageIn10th.invalid }" required />
+                                <div *ngIf="f.submitted && PercentageIn10th.invalid" class="invalid-feedback">
+                                    <label *ngIf="PercentageIn10th.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">% In 12th</label>
+                                <input type="text" class="form-control" autocomplete="off" name="PercentageIn12th"
+                                    maxlength="45" [(ngModel)]="model.PercentageIn12th" #PercentageIn12th="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && PercentageIn12th.invalid }" required />
+                                <div *ngIf="f.submitted && PercentageIn12th.invalid" class="invalid-feedback">
+                                    <label *ngIf="PercentageIn12th.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">% In Graduation</label>
+                                <input type="text" class="form-control" autocomplete="off" name="PercentageInGraduation"
+                                    maxlength="45" [(ngModel)]="model.PercentageInGraduation" #PercentageInGraduation="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && PercentageInGraduation.invalid }" required />
+                                <div *ngIf="f.submitted && PercentageInGraduation.invalid" class="invalid-feedback">
+                                    <label *ngIf="PercentageInGraduation.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">% In PG</label>
+                                <input type="text" class="form-control" autocomplete="off" name="PercentageInPG"
+                                    maxlength="45" [(ngModel)]="model.PercentageInPG" #PercentageInPG="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && PercentageInPG.invalid }" required />
+                                <div *ngIf="f.submitted && PercentageInPG.invalid" class="invalid-feedback">
+                                    <label *ngIf="PercentageInPG.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Is Active</label>
+                                <br />
+                                <input type="checkbox" [(ngModel)]="model.Active" class="filled-in chk-col-light-green"
+                                    name="Active" #Active="ngModel" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary waves-effect">Submit</button>
+                    &nbsp;
+                    <a routerLink="/admin/user" routerLinkActive="active" class="btn btn-default waves-effect">
+                        Cancel
+                    </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

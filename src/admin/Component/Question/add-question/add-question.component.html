@@ -1,0 +1,174 @@
+<div class="block-header">
+    <!-- <h2>
+          FORM VALIDATION
+          <small>Taken from <a href="https://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></small>
+        </h2> -->
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Add New Question</h2>
+
+            </div>
+            <div class="body">
+                <form name="questionForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Category Name</label>
+                                <select class="form-control" [(ngModel)]="model.CategoryId" #CategoryId="ngModel"
+                                    name="CategoryId" (change)="bindSkills($event.target.value)" [ngClass]="{ 'is-invalid': f.submitted && CategoryId.invalid }" required>
+                                    <option value="">--Select--</option>
+                                    <option *ngFor="let cat of categories" value={{cat.CategoryId}}>{{cat.CategoryName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && CategoryId.invalid" class="invalid-feedback">
+                                    <label *ngIf="CategoryId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Skill Name</label>
+                                <select class="form-control" [(ngModel)]="model.SkillId" #SkillId="ngModel"
+                                    name="SkillId" [ngClass]="{ 'is-invalid': f.submitted && SkillId.invalid }" required>
+                                    <option value="">--Select--</option>
+                                    <option *ngFor="let skil of skills" value={{skil.SkillId}}>{{skil.SkillName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && SkillId.invalid" class="invalid-feedback">
+                                    <label *ngIf="SkillId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label required">Question Text</label>
+                                <textarea class="form-control" autocomplete="off" maxlength="300" name="QuestionText"
+                                    [(ngModel)]="model.QuestionText" #QuestionText="ngModel" [ngClass]="{ 'is-invalid': f.submitted && QuestionText.invalid }" required></textarea>
+
+                                <div *ngIf="f.submitted && QuestionText.invalid" class="invalid-feedback">
+                                    <label *ngIf="QuestionText.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">Marks</label>
+                                <input type="number" min="1" class="form-control" autocomplete="off" name="Marks"
+                                    [(ngModel)]="model.Marks" #Marks="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Marks.invalid }" required />
+
+                                <div *ngIf="f.submitted && Marks.invalid" class="invalid-feedback">
+                                    <label *ngIf="Marks.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">Question Type</label>
+
+                                <select class="form-control" (change)="questionTypeChange()" autocomplete="off"
+                                    name="QuestionType" [(ngModel)]="model.QuestionType" #QuestionType="ngModel" [ngClass]="{ 'is-invalid': f.submitted && QuestionType.invalid }"
+                                    required>
+                                    <option value="">--Select--</option>
+                                    <option value="SingleAnswer">Single Answer</option>
+                                    <option value="MultiAnswer">Multi Answer</option>
+                                </select>
+
+
+                                <div *ngIf="f.submitted && QuestionType.invalid" class="invalid-feedback">
+                                    <label *ngIf="QuestionType.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">Total Options</label>
+                                <select class="form-control" [(ngModel)]="model.TotalOptions" #TotalOptions="ngModel"
+                                    name="TotalOptions" (change)="addOptions($event.target.value)" [ngClass]="{ 'is-invalid': f.submitted && TotalOptions.invalid }" required>
+                                    <option value="">--Select--</option>
+                                    <option *ngFor="let number of totalOptions" value={{number}}>{{number}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && TotalOptions.invalid" class="invalid-feedback">
+                                    <label *ngIf="TotalOptions.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Difficulty Level</label>
+                                <select class="form-control" [(ngModel)]="model.DifficultyLevelID" #DifficultyLevelID="ngModel"
+                                    name="DifficultyLevelID" [ngClass]="{ 'is-invalid': f.submitted && DifficultyLevelID.invalid }" required>
+                                    <option value="">--Select--</option>
+                                    <option *ngFor="let dl of difficultylevels" value={{dl.ID}}>{{dl.Level}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && DifficultyLevelID.invalid" class="invalid-feedback">
+                                    <label *ngIf="DifficultyLevelID.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Is Active</label>
+                                <br />
+                                <input type="checkbox" [(ngModel)]="model.Active" class="filled-in chk-col-light-green"
+                                    name="Active" #Active="ngModel" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" *ngFor="let number of model.AnswerList;let i=index;">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <!-- <input type="radio" *ngIf="model.QuestionType=='SingleAnswer'" name="radiogroup"
+                                            [(ngModel)]="model.RightAnsIndex" (change)="onChange(number)"
+                                            #RightAnsIndex="ngModel" value="{{i}}"/> -->
+
+                                        <input type="radio" *ngIf="model.QuestionType=='SingleAnswer'" name="radiogroup"
+                                            [(ngModel)]="model.RightAnsIndex" #RightAnsIndex="ngModel" [value]="i" (change)="onChange(number)" />
+
+                                        <input type="checkbox" *ngIf="model.QuestionType=='MultiAnswer'"
+                                            [(ngModel)]="number.IsRightAnswer" class="filled-in chk-col-light-green"
+                                            name="IsRightAnswer{{i}}" #IsRightAnswer{{i}}="ngModel" />
+
+
+                                    </div>
+
+                                </div>
+                                <input type="text" #AnswerList="ngModel" id="AnswerText-{{i}}" name="AnswerText-{{i}}"
+                                    [(ngModel)]="model.AnswerList[i].AnswerText" placeholder="Option {{i+1}}"
+                                    class="form-control"   required><br />
+                                <div *ngIf="f.submitted && AnswerList.invalid" class="invalid-feedback">
+                                    <label *ngIf="AnswerList.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <button class="btn btn-primary waves-effect">Submit</button>
+                    &nbsp;
+                    <a routerLink="/admin/question" routerLinkActive="active" class="btn btn-default waves-effect">
+                        Cancel
+                    </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="block-header">
+    <!-- <h2>
+          FORM VALIDATION
+          <small>Taken from <a href="https://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></small>
+        </h2> -->
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Add New City</h2>
+
+            </div>
+            <div class="body">
+                <form name="cityForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Country Name</label>
+                                <select class="form-control" [(ngModel)]="model.CountryId" #CountryId="ngModel"
+                                    name="CountryId" (change)="bindState($event.target.value)"
+                                    [ngClass]="{ 'is-invalid': f.submitted && CountryId.invalid }" required>
+                                    <option value="">--Select Country--</option>
+                                    <option *ngFor="let cou of countries" value={{cou.CountryId}}>{{cou.CountryName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && CountryId.invalid" class="invalid-feedback">
+                                    <label *ngIf="CountryId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">State Name</label>
+                                <select class="form-control" [(ngModel)]="model.StateId" #StateId="ngModel"
+                                    name="StateId" [ngClass]="{ 'is-invalid': f.submitted && StateId.invalid }"
+                                    required>
+                                    <option value="">--Select State--</option>
+                                    <option *ngFor="let stat of states" value={{stat.StateId}}>{{stat.StateName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="f.submitted && StateId.invalid" class="invalid-feedback">
+                                    <label *ngIf="StateId.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">City Name</label>
+                                <input type="text" class="form-control" autocomplete="off" name="CityName" maxlength="45"
+                                    [(ngModel)]="model.CityName" #CityName="ngModel"
+                                    [ngClass]="{ 'is-invalid': f.submitted && CityName.invalid }" required />
+
+                                <div *ngIf="f.submitted && CityName.invalid" class="invalid-feedback">
+                                    <label *ngIf="CityName.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Is Active</label>
+                                <br />
+                                <input type="checkbox" [(ngModel)]="model.Active" class="filled-in chk-col-light-green"
+                                    name="Active" #Active="ngModel" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary waves-effect">Submit</button>
+                    &nbsp;
+                    <a routerLink="/admin/city" routerLinkActive="active" class="btn btn-default waves-effect">
+                        Cancel
+                    </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

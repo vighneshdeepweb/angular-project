@@ -1,0 +1,144 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Q1A": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/Q1A",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/assets/admin",
+              "src/web.config"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "src/assets/css/userbootstrap.min.css",
+              "src/assets/css/userstyle.css",
+              "src/assets/admin/plugins/bootstrap/css/bootstrap.css",
+              "src/assets/admin/plugins/node-waves/waves.css",
+              "src/assets/admin/plugins/animate-css/animate.css",
+              "src/assets/admin/css/style.css",
+              "src/assets/admin/css/themes/all-themes.css"
+            ],
+            "scripts": [
+              "src/assets/admin/plugins/jquery/jquery.min.js",
+              "src/assets/admin/plugins/bootstrap/js/bootstrap.js",
+              "src/assets/admin/plugins/jquery-slimscroll/jquery.slimscroll.js",
+              "src/assets/admin/plugins/node-waves/waves.js",
+              "src/assets/admin/plugins/jquery-validation/jquery.validate.js",
+              "src/assets/admin/plugins/jquery-countto/jquery.countTo.js",
+              "src/assets/admin/plugins/raphael/raphael.min.js",
+              "src/assets/admin/plugins/morrisjs/morris.js",
+              "src/assets/admin/plugins/chartjs/Chart.bundle.js",
+              "src/assets/admin/js/admin.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Q1A:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Q1A:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Q1A:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css"
+            ],
+            "scripts": [],
+            
+          }
+          
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "Q1A:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Q1A:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "Q1A"
+}

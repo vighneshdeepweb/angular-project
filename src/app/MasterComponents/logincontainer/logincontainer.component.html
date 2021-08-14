@@ -1,0 +1,35 @@
+<div class="login-10">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-12 col-pad-0 bg-color-10">
+                <div class="form-section">
+                    <div class="logo">
+                        <a href="#">
+                            <img src="assets/img/logos/logo-3.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="btn-section">
+                        <a routerLink="/login" class="link-btn" routerLinkActive="active">Login</a>
+                        <a routerLink="/registeruser" class="link-btn" routerLinkActive="active">Register</a>
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="commonService.errorMsg">
+                        <strong>Error!</strong> {{commonService.errorMsg}}
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="commonService.successMsg">
+                        <strong>Success!</strong> {{commonService.successMsg}}
+                    </div>
+                    <router-outlet></router-outlet>
+
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-12 col-pad-0 bg-img none-992">
+                <div class="info">
+                    <h1>Welcome to Technical Assesement Platform</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

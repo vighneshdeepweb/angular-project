@@ -1,0 +1,55 @@
+<div class="theme-pink">
+    <section class="content">
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a  class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a  class="bars"></a>
+                    <a class="navbar-brand" href="javascript:void(0)">Welcome, {{user.FirstName}} {{user.LastName}}</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                </div>
+            </div>
+        </nav>
+        <!-- #Top Bar -->
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Result Info
+                        </h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Total Questions : {{result.TotalQuestions}}</td>
+                                    <td>Total Attempted Questions : {{result.AttemptedQuestions}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Marks : {{result.TotalMarks}}</td>
+                                    <td>Total Obtained Mark : {{result.ObtainMarks}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Percentage : {{result.Percentage}}%</td>
+                                    <td>Result : <strong>{{result.Result==1?"Pass":"Fail"}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

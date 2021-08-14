@@ -1,0 +1,43 @@
+<div class="theme-pink">
+    <!-- Page Loader -->
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- #END# Page Loader -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <app-header></app-header>
+    <app-sidemenu></app-sidemenu>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="alert bg-green alert-dismissible" role="alert" *ngIf="commonService.successMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{commonService.successMsg}}
+            </div>
+            <div class="alert bg-red alert-dismissible" role="alert" *ngIf="commonService.errorMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{commonService.errorMsg}}
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+</div>
+
+
+<!-- <app-header></app-header>
+<app-sidemenu></app-sidemenu>
+
+
+<app-footer></app-footer> -->

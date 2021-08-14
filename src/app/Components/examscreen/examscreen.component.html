@@ -1,0 +1,146 @@
+
+<div class="theme-pink" >
+    <section class="content">
+        <!-- Top Bar appNoRightClick-->
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a  class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse" aria-expanded="false"></a>
+                    <a  class="bars"></a>
+                    <a class="navbar-brand" href="javascript:void(0)">Welcome, {{user.FirstName}} {{user.LastName}}</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+
+                </div>
+            </div>
+        </nav>
+        <div class="alert bg-green alert-dismissible" role="alert" *ngIf="commonService.successMsg">
+            {{commonService.successMsg}}
+        </div>
+        <div class="alert bg-red alert-dismissible" role="alert" *ngIf="commonService.errorMsg">
+            {{commonService.errorMsg}}
+        </div>
+        <!-- #Top Bar -->
+        <div class="row clearfix" *ngIf="questionList && questionList.length">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Question ({{currentIndex+1}} out of {{questionList.length}})
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <label class="question">
+                                            {{questionList[currentIndex].QuestionText}}
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line"
+                                        *ngIf="questionList[currentIndex].QuestionType==='single choice'">
+                                        <div
+                                            *ngFor="let answer of questionList[currentIndex].AnswerList; let i = index">
+                                            <input type="radio" name="radiogroup" [checked]="answer.IsSelected"
+                                                (change)="singleSelect(questionList[currentIndex].AnswerList,answer,i)" />
+                                            {{answer.AnswerText}}
+
+                                        </div>
+                                    </div>
+                                    <div *ngIf="questionList[currentIndex].QuestionType==='multiple choice'">
+                                        <div class="form-line"
+                                            *ngFor="let answer of questionList[currentIndex].AnswerList">
+                                            <input type="checkbox" [(ngModel)]="answer.IsSelected"
+                                                (change)="multiSelect($event)" class="filled-in chk-col-light-green"
+                                                name="answer.AnswerId" />
+                                            {{answer.AnswerText}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-grfoup">
+                                    <button title="Next" (click)="nextQuestion()"
+                                        class="btn btn-primary waves-effect quebuttons"
+                                        [disabled]="currentIndex === (questionList.length-1)">
+                                        Next<i class="material-icons mat_icon">navigate_next</i></button>
+                                    <button title="Previous" (click)="previousQuestion()"
+                                        class="btn btn-primary waves-effect quebuttons" [disabled]="currentIndex === 0">
+                                        <i class="material-icons mat_icon">navigate_before</i>Previous</button>
+                                    <button title="EndExam" class="btn btn-danger waves-effect quebuttons"
+                                        (click)="endExam()">
+                                        End Exam</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Time Status
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-md-12" style="text-align: center;">
+                                <countdown #count [config]="{ leftTime: duration, format: 'HH:mm:ss' }"
+                                    (event)="countDownEvent($event)" class="timer">
+                                </countdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix" *ngIf="questionList && questionList.length">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Summary
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-md-4">
+                                <div class="summarylabel">
+                                    <label> {{answeredCount}}</label>
+                                </div>
+                                <div class="sl">
+                                    <label>Answered</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="summarylabel" style="background-color: brown;">
+                                    <label> {{notansweredCount}}</label>
+                                </div>
+                                <div class="sl">
+                                    <label>Not Answered</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

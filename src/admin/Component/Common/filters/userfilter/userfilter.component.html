@@ -1,0 +1,96 @@
+<div class="card">
+    <div class="header">
+        <h2>
+            Search User
+        </h2>
+        <ul class="header-dropdown m-r--5">
+            <li class="dropdown">
+            </li>
+        </ul>
+    </div>
+    <div class="body">
+        <form name="filterForm" (ngSubmit)="f.form.valid && searchUser()" #f="ngForm" novalidate>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="Country" name="countryid" [(ngModel)]="model.countryid"
+                                    (selectionChange)="bindState($event.value)">
+                                    <mat-option value="0">--Select Country--</mat-option>
+                                    <mat-option *ngFor="let country of countries" [value]="country.CountryId">
+                                        {{country.CountryName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="State" name="stateid" [(ngModel)]="model.stateid"
+                                    (selectionChange)="bindCity($event.value)">
+                                    <mat-option value="0">--Select State--</mat-option>
+                                    <mat-option *ngFor="let stat of states" [value]="stat.StateId">
+                                        {{stat.StateName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="City" name="cityid" [(ngModel)]="model.cityid"
+                                    (selectionChange)="bindUniversity($event.value)">
+                                    <mat-option value="0">--Select City--</mat-option>
+                                    <mat-option *ngFor="let city of cities" [value]="city.CityId">
+                                        {{city.CityName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="University" name="universityid"
+                                    [(ngModel)]="model.universityid">
+                                    <mat-option value="0">--Select University--</mat-option>
+                                    <mat-option *ngFor="let university of universities"
+                                        [value]="university.UniversityId">
+                                        {{university.UniversityName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="User Name" name="username" [(ngModel)]="model.username">
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <button class="btn btn-primary waves-effect">Search</button>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <button type="reset" class="btn btn-light waves-effect">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

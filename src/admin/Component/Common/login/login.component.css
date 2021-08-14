@@ -1,0 +1,8 @@
+#txtEmail,#txtPassword{
+    margin-left: 20px;
+    width: 285px;
+}
+.invalid-feedback
+{
+    margin-left: 22px;
+}

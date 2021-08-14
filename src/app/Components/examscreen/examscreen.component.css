@@ -1,0 +1,53 @@
+.timer {
+    text-align: center;
+    font-size: 40px;
+    color: #D9534F;
+}
+
+.question{
+font-size: 18px;
+}
+.quecheckbox
+{
+margin-right: 30px;
+}
+.mat-checkbox-layout .mat-checkbox-label{
+    font-weight: normal !important;
+}
+.mat_icon{
+position: relative;
+top:6px;
+font-size: 22px;
+}
+.quebuttons
+{
+    margin-right: 10px;
+    font-size: 18px;
+}
+.summarylabel{
+    height: 50px;
+    width: 50px;
+    background-color: #2196F3;
+    color: white;
+    padding: 8px;
+    font-size: 24px;
+    text-align: center;
+}
+.sl{
+    margin:5px 0px 5px 0px; 
+    width: 100%;
+}
+
+.custom-style {
+    font-size: 18px;
+    
+  }
+
+  .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content{
+    padding:0px !important;
+  }
+
+  section.content
+  {
+    margin: 100px 15px 0 15px;
+  }

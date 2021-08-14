@@ -1,0 +1,98 @@
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Search Question
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <!-- <a  class="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a> -->
+                        <!-- <ul class="dropdown-menu pull-right">
+                            <li><a >Action</a></li>
+                            <li><a >Another action</a></li>
+                            <li><a >Something else here</a></li>
+                        </ul> -->
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <form name="filterForm" (ngSubmit)="f.form.valid && searchQuestion()" #f="ngForm" novalidate>
+                    <div class="row clearfix">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Category" name="categoryid"
+                                            [(ngModel)]="model.categoryid" (selectionChange)="bindSkills($event.value)">
+                                            <mat-option value="0">--Select Category--</mat-option>
+                                            <mat-option *ngFor="let cat of categories" [value]="cat.CategoryId">
+                                                {{cat.CategoryName}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Skill" name="skillid" [(ngModel)]="model.skillid">
+                                            <mat-option value="0">--Select Skill--</mat-option>
+                                            <mat-option *ngFor="let skil of skills" [value]="skil.SkillId">
+                                                {{skil.SkillName}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Question Text" name="questiontext" [(ngModel)]="model.questiontext">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <mat-form-field>
+                                        <mat-select placeholder="Question Type" name="questiontype" [(ngModel)]="model.questiontype">
+                                            <mat-option value="">--Select Question Type--</mat-option>
+                                            <mat-option value="SingleAnswer">Single Answer</mat-option>
+                                            <mat-option value="MultiAnswer">Multi Answer</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    <mat-form-field>
+                                        <input  autocomplete="off"  matInput [matDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="model.date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                            <button class="btn btn-primary waves-effect">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

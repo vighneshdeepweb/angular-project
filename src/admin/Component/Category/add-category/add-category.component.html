@@ -1,0 +1,56 @@
+<div class="block-header">
+    <!-- <h2>
+          FORM VALIDATION
+          <small>Taken from <a href="https://jqueryvalidation.org/" target="_blank">jqueryvalidation.org</a></small>
+        </h2> -->
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Add New Category</h2>
+
+            </div>
+            <div class="body">
+                <form name="categoryForm" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Category Name</label>
+                                <input type="text" class="form-control" autocomplete="off" name="CategoryName" maxlength="100"
+                                    [(ngModel)]="model.CategoryName" #CategoryName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && CategoryName.invalid }" required />
+                                <div *ngIf="f.submitted && CategoryName.invalid" class="invalid-feedback">
+                                    <label *ngIf="CategoryName.errors.required" class="error">This field is
+                                        required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label ">Description</label>
+                                <input type="text" class="form-control" autocomplete="off" name="Description" maxlength="100"
+                                    [(ngModel)]="model.Description" #Description="ngModel" />
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label">Is Active</label>
+                                <br />
+                                <input type="checkbox" [(ngModel)]="model.Active"
+                                    class="filled-in chk-col-light-green" name="Active" #Active="ngModel" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary waves-effect">Submit</button>
+                    &nbsp;
+                    <a routerLink="/admin/category" routerLinkActive="active" class="btn btn-default waves-effect">
+                        Cancel
+                    </a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a ><b>Q1A Admin</b></a>
+
+        </div>
+        <div class="card">
+            <div class="body">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="msg">Sign in to Q1A admin</div>
+                    <div class="alert alert-danger" role="alert" *ngIf="commonService.errorMsg">
+                        <strong>Error!</strong> {{commonService.errorMsg}}
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="">
+                            <input type="email" class="form-control" placeholder="Email" id="txtEmail" name="Email"
+                                [(ngModel)]="model.Email" #Email="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && Email.invalid  }" required email />
+                            <div *ngIf="f.submitted && Email.invalid "  class="invalid-feedback">
+                                <div *ngIf="Email.errors.required">Email is required</div>
+                                <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="">
+                            <input type="password" placeholder="Password" class="form-control" id="txtPassword" name="Password"
+                                [(ngModel)]="model.Password" #Password="ngModel"
+                                [ngClass]="{ 'is-invalid': f.submitted && Password.invalid }" required>
+                            <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
+                                <div *ngIf="Password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <!-- <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Remember Me</label> -->
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect">SIGN IN</button>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

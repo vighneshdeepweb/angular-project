@@ -1,0 +1,304 @@
+<section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+                <!-- User Info -->
+                <div class="user-info">
+                        <div class="image">
+                                <img src="../../../assets/admin/images/user.png" width="48" height="48" alt="User" />
+                        </div>
+                        <div class="info-container">
+                                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{user.FirstName}} {{user.LastName}}
+                                </div>
+                                <div class="email"> {{user.Email}}</div>
+                                <div class="btn-group user-helper-dropdown">
+                                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true">keyboard_arrow_down</i>
+                                        <ul class="dropdown-menu pull-right">
+                                                <!-- <li><a ><i
+                                                                        class="material-icons">person</i>Profile</a>
+                                                </li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a ><i
+                                                                        class="material-icons">group</i>Followers</a>
+                                                </li>
+                                                <li><a ><i
+                                                                        class="material-icons">shopping_cart</i>Sales</a>
+                                                </li>
+                                                <li><a ><i
+                                                                        class="material-icons">favorite</i>Likes</a>
+                                                </li> -->
+                                                <!-- <li role="separator" class="divider"></li> -->
+                                                <li><a (click)="logout()"><i class="material-icons">input</i>Sign
+                                                                Out</a></li>
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+                <!-- #User Info -->
+                <!-- Menu -->
+                <div class="menu">
+                        <ul class="list">
+                                <li class="header">MAIN NAVIGATION</li>
+                                <li class="active" *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/dashboard']">
+                                                <i class="material-icons">home</i>
+                                                <span>Home</span>
+                                        </a>
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <mat-expansion-panel hideToggle>
+                                                <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                                <i class="material-icons">view_module</i>
+                                                                <span
+                                                                        style="font-weight: 600 !important;position: relative;">Common
+                                                                        Masters<mat-icon style="position: absolute;
+                                                                        top: -1px;">expand_more</mat-icon></span>
+                                                        </mat-panel-title>
+                                                </mat-expansion-panel-header>
+                                                <ul>
+                                                        <li>
+                                                                <a [routerLink]="['/admin/state']">State Master</a>
+                                                        </li>
+                                                        <li>
+                                                                <a [routerLink]="['/admin/city']">City Master</a>
+                                                        </li>
+                                                        <li>
+                                                                <a [routerLink]="['/admin/university']">University
+                                                                        Master</a>
+                                                        </li>
+
+
+                                                </ul>
+                                        </mat-expansion-panel>
+
+
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/user']">
+                                                <i class="material-icons">people</i>
+                                                <span>Users List</span>
+                                        </a>
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/category']">
+                                                <i class="material-icons">category</i>
+                                                <span>Category Master</span>
+                                        </a>
+
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/skill']">
+                                                <i class="material-icons">subject</i>
+                                                <span>Skill Master</span>
+                                        </a>
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/question']">
+                                                <i class="material-icons">question_answer</i>
+                                                <span>Question Bank</span>
+                                        </a>
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/exam']">
+                                                <i class="material-icons">assignment</i>
+                                                <span>Exams</span>
+                                        </a>
+
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/assignexamlist']">
+                                                <i class="material-icons">speaker_notes</i>
+                                                <span>Assign Exam</span>
+                                        </a>
+
+                                </li>
+                                <li *ngIf="user.RoleId==1">
+                                        <a [routerLink]="['/admin/attemptedexamlist']">
+                                                <i class="material-icons">speaker_notes</i>
+                                                <span>Attempted Exam List</span>
+                                        </a>
+
+                                </li>
+
+                                <li class="active" *ngIf="user.RoleId==2">
+                                        <a [routerLink]="['/dashboard']">
+                                                <i class="material-icons">home</i>
+                                                <span>Home</span>
+                                        </a>
+                                </li>
+                                <li *ngIf="user.RoleId==2">
+                                        <a [routerLink]="['/assignedexam']">
+                                                <i class="material-icons">speaker_notes</i>
+                                                <span>Assigned Exam</span>
+                                        </a>
+                                </li>
+                               
+
+
+                        </ul>
+                </div>
+                <!-- #Menu -->
+                <!-- Footer -->
+                <div class="legal">
+                        <div class="copyright">
+                                &copy; 2019 - 2020 <a>Q1A - Technical Assesement Platform</a>.
+                        </div>
+                        <!-- <div class="version">
+                                <b>Version: </b> 1.0.5
+                        </div> -->
+                </div>
+                <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                        <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+                </ul>
+                <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                                <ul class="demo-choose-skin">
+                                        <li data-theme="red" class="active">
+                                                <div class="red"></div>
+                                                <span>Red</span>
+                                        </li>
+                                        <li data-theme="pink">
+                                                <div class="pink"></div>
+                                                <span>Pink</span>
+                                        </li>
+                                        <li data-theme="purple">
+                                                <div class="purple"></div>
+                                                <span>Purple</span>
+                                        </li>
+                                        <li data-theme="deep-purple">
+                                                <div class="deep-purple"></div>
+                                                <span>Deep Purple</span>
+                                        </li>
+                                        <li data-theme="indigo">
+                                                <div class="indigo"></div>
+                                                <span>Indigo</span>
+                                        </li>
+                                        <li data-theme="blue">
+                                                <div class="blue"></div>
+                                                <span>Blue</span>
+                                        </li>
+                                        <li data-theme="light-blue">
+                                                <div class="light-blue"></div>
+                                                <span>Light Blue</span>
+                                        </li>
+                                        <li data-theme="cyan">
+                                                <div class="cyan"></div>
+                                                <span>Cyan</span>
+                                        </li>
+                                        <li data-theme="teal">
+                                                <div class="teal"></div>
+                                                <span>Teal</span>
+                                        </li>
+                                        <li data-theme="green">
+                                                <div class="green"></div>
+                                                <span>Green</span>
+                                        </li>
+                                        <li data-theme="light-green">
+                                                <div class="light-green"></div>
+                                                <span>Light Green</span>
+                                        </li>
+                                        <li data-theme="lime">
+                                                <div class="lime"></div>
+                                                <span>Lime</span>
+                                        </li>
+                                        <li data-theme="yellow">
+                                                <div class="yellow"></div>
+                                                <span>Yellow</span>
+                                        </li>
+                                        <li data-theme="amber">
+                                                <div class="amber"></div>
+                                                <span>Amber</span>
+                                        </li>
+                                        <li data-theme="orange">
+                                                <div class="orange"></div>
+                                                <span>Orange</span>
+                                        </li>
+                                        <li data-theme="deep-orange">
+                                                <div class="deep-orange"></div>
+                                                <span>Deep Orange</span>
+                                        </li>
+                                        <li data-theme="brown">
+                                                <div class="brown"></div>
+                                                <span>Brown</span>
+                                        </li>
+                                        <li data-theme="grey">
+                                                <div class="grey"></div>
+                                                <span>Grey</span>
+                                        </li>
+                                        <li data-theme="blue-grey">
+                                                <div class="blue-grey"></div>
+                                                <span>Blue Grey</span>
+                                        </li>
+                                        <li data-theme="black">
+                                                <div class="black"></div>
+                                                <span>Black</span>
+                                        </li>
+                                </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="settings">
+                                <div class="demo-settings">
+                                        <p>GENERAL SETTINGS</p>
+                                        <ul class="setting-list">
+                                                <li>
+                                                        <span>Report Panel Usage</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox" checked><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                                <li>
+                                                        <span>Email Redirect</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox"><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                        </ul>
+                                        <p>SYSTEM SETTINGS</p>
+                                        <ul class="setting-list">
+                                                <li>
+                                                        <span>Notifications</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox" checked><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                                <li>
+                                                        <span>Auto Updates</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox" checked><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                        </ul>
+                                        <p>ACCOUNT SETTINGS</p>
+                                        <ul class="setting-list">
+                                                <li>
+                                                        <span>Offline</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox"><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                                <li>
+                                                        <span>Location Permission</span>
+                                                        <div class="switch">
+                                                                <label><input type="checkbox" checked><span
+                                                                                class="lever"></span></label>
+                                                        </div>
+                                                </li>
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+</section>

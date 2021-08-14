@@ -1,0 +1,171 @@
+<div class="login-inner-form">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group form-box">
+
+            <input type="text" class="form-control" autocomplete="off" placeholder="First Name" name="FirstName"
+                [(ngModel)]="model.FirstName" #FirstName="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && FirstName.invalid  }" required />
+            <div *ngIf="f.submitted && FirstName.invalid " class="invalid-feedback">
+                <div *ngIf="FirstName.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="Last Name" name="LastName" [(ngModel)]="model.LastName"
+                #LastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && LastName.invalid  }" required />
+            <div *ngIf="f.submitted && LastName.invalid " class="invalid-feedback">
+                <div *ngIf="LastName.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="email" class="form-control" placeholder="Email Address" name="Email" [(ngModel)]="model.Email"
+                #Email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Email.invalid  }" required email />
+            <div *ngIf="f.submitted && Email.invalid " class="invalid-feedback">
+                <div *ngIf="Email.errors.required">This field is required</div>
+                <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+            </div>
+            <i class="flaticon-mail-2"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="Mobile No" name="MobileNo" [(ngModel)]="model.MobileNo"
+                #MobileNo="ngModel" [ngClass]="{ 'is-invalid': f.submitted && MobileNo.invalid  }" required />
+            <div *ngIf="f.submitted && MobileNo.invalid " class="invalid-feedback">
+                <div *ngIf="MobileNo.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="password" placeholder="Password" class="form-control" name="Password"
+                [(ngModel)]="model.Password" #Password="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && Password.invalid }" required>
+            <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
+                <div *ngIf="Password.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-password"></i>
+        </div>
+        <div class="form-group form-box">
+            <select class="form-control" [(ngModel)]="model.CountryId" #CountryId="ngModel" name="CountryId"
+                [ngClass]="{ 'is-invalid': f.submitted && CountryId.invalid }" (change)="bindState($event.target.value)"
+                required>
+                <option value="">-- Select Country --</option>
+                <option *ngFor="let cou of countries" value={{cou.CountryId}}>{{cou.CountryName}}
+                </option>
+            </select>
+            <div *ngIf="f.submitted && CountryId.invalid" class="invalid-feedback">
+                <label *ngIf="CountryId.errors.required" class="error">This field is
+                    required</label>
+            </div>
+
+
+        </div>
+        <div class="form-group form-box">
+            <select class="form-control" [(ngModel)]="model.StateId" #StateId="ngModel" name="StateId"
+                [ngClass]="{ 'is-invalid': f.submitted && StateId.invalid }" (change)="bindCity($event.target.value)"
+                required>
+                <option value="">-- Select State --</option>
+                <option *ngFor="let stat of states" value={{stat.StateId}}>{{stat.StateName}}
+                </option>
+            </select>
+            <div *ngIf="f.submitted && StateId.invalid" class="invalid-feedback">
+                <label *ngIf="StateId.errors.required" class="error">This field is
+                    required</label>
+            </div>
+
+
+        </div>
+        <div class="form-group form-box">
+            <select class="form-control" [(ngModel)]="model.CityId" #CityId="ngModel" name="CityId"
+                [ngClass]="{ 'is-invalid': f.submitted && CityId.invalid }"
+                (change)="bindUniversity($event.target.value)" required>
+                <option value="">-- Select City --</option>
+                <option *ngFor="let city of cities" value={{city.CityId}}>{{city.CityName}}
+                </option>
+            </select>
+            <div *ngIf="f.submitted && CityId.invalid" class="invalid-feedback">
+                <label *ngIf="CityId.errors.required" class="error">This field is
+                    required</label>
+            </div>
+
+
+        </div>
+        <div class="form-group form-box">
+            <select class="form-control" [(ngModel)]="model.UniversityId" #UniversityId="ngModel" name="UniversityId"
+                [ngClass]="{ 'is-invalid': f.submitted && UniversityId.invalid }" required>
+                <option value="">-- Select University/Collage --</option>
+                <option *ngFor="let university of universities" value={{university.UniversityId}}>
+                    {{university.UniversityName}}
+                </option>
+            </select>
+            <div *ngIf="f.submitted && UniversityId.invalid" class="invalid-feedback">
+                <label *ngIf="UniversityId.errors.required" class="error">This field is
+                    required</label>
+            </div>
+
+
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="Home Town" name="HomeTown" [(ngModel)]="model.HomeTown"
+                #HomeTown="ngModel" [ngClass]="{ 'is-invalid': f.submitted && HomeTown.invalid  }" required />
+            <div *ngIf="f.submitted && HomeTown.invalid " class="invalid-feedback">
+                <div *ngIf="HomeTown.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="% In 10th" name="PercentageIn10th" [(ngModel)]="model.PercentageIn10th"
+                #PercentageIn10th="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PercentageIn10th.invalid  }" required />
+            <div *ngIf="f.submitted && PercentageIn10th.invalid " class="invalid-feedback">
+                <div *ngIf="PercentageIn10th.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="% In 12th" name="PercentageIn12th" [(ngModel)]="model.PercentageIn12th"
+                #PercentageIn12th="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PercentageIn12th.invalid  }" required />
+            <div *ngIf="f.submitted && PercentageIn12th.invalid " class="invalid-feedback">
+                <div *ngIf="PercentageIn12th.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="% In Graduation" name="PercentageInGraduation" [(ngModel)]="model.PercentageInGraduation"
+                #PercentageInGraduation="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PercentageInGraduation.invalid  }" required />
+            <div *ngIf="f.submitted && PercentageInGraduation.invalid " class="invalid-feedback">
+                <div *ngIf="PercentageInGraduation.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="text" class="form-control" placeholder="% In PG" name="PercentageInPG" [(ngModel)]="model.PercentageInPG"
+                #PercentageInPG="ngModel" [ngClass]="{ 'is-invalid': f.submitted && PercentageInPG.invalid  }" required />
+            <div *ngIf="f.submitted && PercentageInPG.invalid " class="invalid-feedback">
+                <div *ngIf="PercentageInPG.errors.required">This field is required</div>
+            </div>
+            <i class="flaticon-user"></i>
+        </div>
+
+        <div class="form-group form-box">
+            <ng-multiselect-dropdown [data]="categories" placeholder="Select Category" [settings]="catdropdownSettings"
+                name="InterestedSkills" class="form-control" [(ngModel)]="InterestedSkills" (onSelect)="onCatItemSelect($event)"
+                (onDeSelect)="onCatItemDeSelect($event)">
+            </ng-multiselect-dropdown>
+            <div *ngIf="invalidcategories==true" class="invalid-feedback">
+                <label class="error">This field is required.</label>
+            </div>
+          
+        </div>
+
+        <div class="form-group mb-0">
+            <button type="submit" class="btn-md btn-theme btn-block">Register</button>
+        </div>
+    </form>
+    <!-- <div class="extra-login">
+        <span>Or Login With</span>
+    </div>
+    <ul class="social-list clearfix">
+        <li><a href="#" class="facebook-bg">Facebook</a></li>
+        <li><a href="#" class="twitter-bg">Twitter</a></li>
+        <li><a href="#" class="google-bg">Google</a></li>
+    </ul> -->
+</div>

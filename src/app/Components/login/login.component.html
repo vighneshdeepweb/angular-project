@@ -1,0 +1,49 @@
+<!-- <div class="alert alert-success" role="alert">
+    <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+</div> -->
+
+
+
+<div class="login-inner-form">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group form-box">
+            <input type="email" class="form-control" placeholder="Email" name="Email" [(ngModel)]="model.Email"
+                #Email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && Email.invalid  }" required email />
+            <div *ngIf="f.submitted && Email.invalid " class="invalid-feedback">
+                <div *ngIf="Email.errors.required">Email is required</div>
+                <div *ngIf="Email.errors.email">Email must be a valid email address</div>
+            </div>
+            <i class="flaticon-mail-2"></i>
+        </div>
+        <div class="form-group form-box">
+            <input type="password" placeholder="Password" class="form-control" name="Password"
+                [(ngModel)]="model.Password" #Password="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && Password.invalid }" required>
+            <div *ngIf="f.submitted && Password.invalid" class="invalid-feedback">
+                <div *ngIf="Password.errors.required">Password is required</div>
+            </div>
+            <i class="flaticon-password"></i>
+        </div>
+        <div class="checkbox">
+            <!-- <div class="form-check checkbox-theme">
+                <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">
+                    Remember me
+                </label>
+            </div> -->
+            <a routerLink="/forgotpassword">Forgot Password</a>
+
+        </div>
+        <div class="form-group mb-0">
+            <button type="submit" class="btn-md btn-theme btn-block">Login</button>
+        </div>
+    </form>
+    <!-- <div class="extra-login">
+        <span>Or Login With</span>
+    </div>
+    <ul class="social-list clearfix">
+        <li><a href="#" class="facebook-bg">Facebook</a></li>
+        <li><a href="#" class="twitter-bg">Twitter</a></li>
+        <li><a href="#" class="google-bg">Google</a></li>
+    </ul> -->
+</div>

@@ -1,0 +1,67 @@
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <app-userfilter (emitFilterteredUsers)='getusersbyfilter($event)'></app-userfilter>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <app-examfilter (emitFilterteredExams)='getexamsbyfilter($event)'></app-examfilter>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6">
+        <div class="card">
+            <div class="header">
+                <h2>Assign Exam To User</h2>
+
+            </div>
+            <div class="body">
+                <form #userlogin = "ngForm" (ngSubmit) = "onSubmit(userlogin.value)" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label required">Exam Date</label>
+                                <div class="form-line">
+                                       <mat-form-field>
+                                        <input matInput type="datetime-local"  name="ExamDate" [(ngModel)]="model.ExamDate">
+                                      </mat-form-field>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">Exam Name</label>
+                                <ng-multiselect-dropdown [data]="exams" placeholder="Select Exam"
+                                    [settings]="examdropdownSettings" name="ExamId" [(ngModel)]="examselectedItems"
+                                    (onSelect)="onExamItemSelect($event)" (onSelectAll)="onExamSelectAll($event)" (onDeSelectAll)="onExamDeSelectAll($event)" (onDeSelect)="onExamItemDeSelect($event)">
+                                </ng-multiselect-dropdown>
+                                <div *ngIf="invalidexams==true" class="invalid-feedback">
+                                    <label class="error">This field is required.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="form-label required">User Name</label>
+                                <ng-multiselect-dropdown [data]="users" placeholder="Select User"
+                                    [settings]="userdropdownSettings" name="UserId" [(ngModel)]="userselectedItems"
+                                    (onSelect)="onUserItemSelect($event)" (onSelectAll)="onUserSelectAll($event)" (onDeSelectAll)="onUserDeSelectAll($event)" (onDeSelect)="onUserItemDeSelect($event)">
+                                </ng-multiselect-dropdown>
+                                <div *ngIf="invalidusers==true" class="invalid-feedback">
+                                    <label class="error">This field is required.</label>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        
+                    </div>
+                    <button class="btn btn-primary waves-effect">Submit</button>
+                    &nbsp;
+                    <a routerLink="/admin/assignexamlist" routerLinkActive="active" class="btn btn-default waves-effect">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

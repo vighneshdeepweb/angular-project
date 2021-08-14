@@ -1,0 +1,75 @@
+<div class="card">
+    <div class="header">
+        <h2>
+            Search Exam
+        </h2>
+        <ul class="header-dropdown m-r--5">
+            <li class="dropdown">
+            </li>
+        </ul>
+    </div>
+    <div class="body">
+        <form name="filterForm" (ngSubmit)="f.form.valid && searchExam()" #f="ngForm" novalidate>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="Category" name="categoryid" [(ngModel)]="model.categoryid"
+                                    (selectionChange)="bindSkills($event.value)">
+                                    <mat-option value="0">--Select Category--</mat-option>
+                                    <mat-option *ngFor="let cat of categories" [value]="cat.CategoryId">
+                                        {{cat.CategoryName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field>
+                                <mat-select placeholder="Skill" name="skillid" [(ngModel)]="model.skillid">
+                                    <mat-option value="0">--Select Skill--</mat-option>
+                                    <mat-option *ngFor="let skil of skills" [value]="skil.SkillId">
+                                        {{skil.SkillName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Exam Title" name="title" [(ngModel)]="model.title">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+
+                            <mat-form-field>
+                                <input autocomplete="off" matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                    name="date" [(ngModel)]="model.date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <button class="btn btn-primary waves-effect">Search</button>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                    <button type="reset" class="btn btn-light waves-effect">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

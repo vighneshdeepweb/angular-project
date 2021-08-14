@@ -1,0 +1,12 @@
+/* .example-container {
+    max-height: 300px;
+    overflow: auto;
+    margin-bottom: 10px;
+  } */
+  table {
+    width: 100%;
+    
+  }
+  #btnAddRow{
+    margin-right: 10px;
+  }

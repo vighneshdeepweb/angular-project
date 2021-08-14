@@ -1,0 +1,70 @@
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    City List
+                </h2>
+                <a href="javascript:void(0)" class="addnew btn btn-success " (click)='addNewCity()'>
+                    Add New
+                </a>
+
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <mat-form-field>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                    </mat-form-field>
+                    <table mat-table [dataSource]="dataSource" matSort
+                        class="mat-elevation-z8 table table-bordered table-striped table-hover">
+
+                        <ng-container matColumnDef="CityName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> City Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.CityName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="StateName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> State Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.StateName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="CountryName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Country Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.CountryName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Active">
+                            <th mat-header-cell *matHeaderCellDef> Active </th>
+                            <td mat-cell *matCellDef="let element"> {{element.Active=="1"?"Yes":"No"}} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="Date">
+                            <th mat-header-cell *matHeaderCellDef> Date </th>
+                            <td mat-cell *matCellDef="let element"> {{element.CreatedDate|date}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button (click)="editCity(element)" title="Edit" class="btn btn-primary waves-effect">
+                                    <i class="material-icons" style="font-size: 15px;">edit</i></button>
+                                <button (click)="deleteCity(element)" title="Delete" style="margin-left: 10px;"
+                                    class="btn btn-primary waves-effect">
+                                    <i class="material-icons" style="font-size: 15px;">delete</i></button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div *ngIf="dataSource.data.length === 0 || dataSource.filteredData.length===0">
+                        No records found!
+                    </div>
+                    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons>
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
